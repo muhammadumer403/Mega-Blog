@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import postService from "../../appwrite/postManager";
 import PostCard from "../PostCard";
 import { Container } from "../../components/Index";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts, loadFromLocalStorage, postSetter } from "../../store/postSlice";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
-  
+  const dispatch = useDispatch();
+  const reduxPosts = useSelector((state) => state.post.posts); // Redux se posts
+
+  // Load posts from localStorage on mount
   useEffect(() => {
-    postService?.getPosts()?.then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
+    dispatch(loadFromLocalStorage());
+  }, [dispatch]);
+
+  // Fetch posts from backend on mount
+  useEffect(() => {
+    postService.getPosts([]).then((res) => {
+      if (res && Array.isArray(res.documents)) {
+        dispatch(getPosts(res.documents));
+        dispatch(postSetter(res.documents));
       }
     });
-  }, []);
+  }, [dispatch]);
 
-  if (posts?.length === 0) {
+  if (!reduxPosts || reduxPosts.length === 0) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
@@ -34,7 +44,7 @@ function Home() {
     <div className="w-full py-8 bg-gray-900">
       <Container>
         <div className="flex flex-wrap justify-center">
-          {posts.map((post) => (
+          {reduxPosts.map((post) => (
             <div key={post.$id} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
               <PostCard {...post} />
             </div>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import postService from "../../appwrite/postManager";
 import parse from "html-react-parser";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "../../Container/Container";
+import {  Filedel, getFilePreview, getPost, postDel, postSetter } from "../../store/postSlice";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -11,11 +12,15 @@ export default function Post() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
   const isAuthor = post && userData ? post.userID === userData.$id : false;
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (slug) {
+      dispatch(getPost(slug))
       postService.getPost(slug).then((post) => {
-        if (post) setPost(post);
+        if (post) {
+          setPost(post);
+          dispatch(postSetter(post));
+        }
         else navigate("/");
       });
     } else navigate("/");
@@ -23,10 +28,14 @@ export default function Post() {
 
   const deletePost = () => {
     postService.deletePost(post.$id).then((status) => {
+      dispatch(postDel(status));
       if (status) {
         postService.deleteFile(post.featuredImage);
+        dispatch(Filedel(post.featuredImage));
         navigate("/");
+        
       }
+      
     });
   };
 
@@ -45,7 +54,7 @@ export default function Post() {
           <img
             src={
               post.featuredImage
-                ? postService.getFilePreview(post.featuredImage)
+                ? (postService.getFilePreview(post.featuredImage) && dispatch(getFilePreview(post.featuredImage)))
                 : "/default-image.jpg"
             }
             alt={post.title}

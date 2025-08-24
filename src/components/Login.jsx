@@ -31,7 +31,7 @@ function Login() {
       }
 
       // Step 3: Dispatch login action and navigate
-      dispatch(authLogin(userData.age, userData.name));
+      dispatch(authLogin(userData.email, userData.password));
       navigate("/"); // Redirect to home or dashboard
     } catch (error) {
       console.error("Login error:", error);

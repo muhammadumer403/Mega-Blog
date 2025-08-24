@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Container, Postfrom } from "../../components/Index";
 import postService from '../../appwrite/postManager';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getPost, postSetter, updatePost } from '../../store/postSlice';
 
 function EditPost() {
+  const dispatch = useDispatch();
   const [post, setPost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (slug) {
+      dispatch(getPost(slug));
       postService.getPost(slug).then((fetchedPost) => {
         if (fetchedPost) {
           setPost(fetchedPost);
+          dispatch(postSetter(fetchedPost));
         } else {
           navigate('/'); // Redirect if post is not found
         }
