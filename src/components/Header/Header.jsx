@@ -37,7 +37,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-gray-900 text-white shadow-md py-4 dark:bg-gray-800 dark:text-white">
+    <header className="bg-yellow-900 text-white shadow-md py-4 dark:bg-gray-800 dark:text-white">
       <Container>
         <div className="flex justify-between items-center">
           <div className="mr-4">
