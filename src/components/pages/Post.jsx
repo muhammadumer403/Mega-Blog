@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../../Container/Container";
 import {  Filedel, getFilePreview, getPost, postDel, postSetter } from "../../store/postSlice";
+import Loading from "./Loading";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -42,7 +43,7 @@ export default function Post() {
   if (!post) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold text-gray-600">Loading...</p>
+        <Loading />
       </div>
     );
   }
@@ -54,7 +55,7 @@ export default function Post() {
           <img
             src={
               post.featuredImage
-                ? (postService.getFilePreview(post.featuredImage) && dispatch(getFilePreview(post.featuredImage)))
+                ? (postService.getFilePreview(post.featuredImage) )
                 : "/default-image.jpg"
             }
             alt={post.title}

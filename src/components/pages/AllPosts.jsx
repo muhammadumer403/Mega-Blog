@@ -7,10 +7,12 @@ import { getPosts, loadFromLocalStorage, postSetter } from '../../store/postSlic
 function AllPosts() {
   const dispatch = useDispatch();
   const reduxPosts = useSelector((state) => state.post.posts); // Redux posts
+  
 
   // Load posts from localStorage on mount
   useEffect(() => {
     dispatch(loadFromLocalStorage());
+    console.log(reduxPosts)
   }, [dispatch]);
 
   // Fetch posts from backend on mount
@@ -30,7 +32,7 @@ function AllPosts() {
           {reduxPosts && reduxPosts.length > 0 ? (
             reduxPosts.map((post) => (
               <div key={post.$id} className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
-                <PostCard {...post} />
+                <PostCard {...post}  />
               </div>
             ))
           ) : (

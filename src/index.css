@@ -1,3 +1,64 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Text:wght@200..700&display=swap");
+@import "tailwindcss";
+/* From Uiverse.io by Shoh2008 */
+@theme {
+  --font-mozilla-text: "Mozilla Text", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+}
+.loader {
+  position: relative;
+  font-size: 16px;
+  width: 5.5em;
+  height: 5.5em;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(90deg);
+  height: 100%;
+  width: 4px;
+  background: ;
+  left: 50%;
+  top: 50%;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(90deg);
+  left: 0em;
+  bottom: 0em;
+  width: 2em;
+  height: 2em;
+  background-color: rgb(8, 115, 236);
+  border-radius: 15%;
+  animation: rollingRock 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
+}
+
+@keyframes rollingRock {
+  0% {
+    transform: translate(0, 0em) rotate(360deg);
+  }
+
+  
+  25% {
+    transform: translate(0, -5em) rotate(720deg);
+  }
+
+  
+
+  50% {
+    transform: translate(5em, -5em) rotate(1440deg);
+  }
+
+  
+  75% {
+    transform: translate(5em, 0em) rotate(2880deg);
+  }
+
+  100% {
+    transform: translate(0em, 0em) rotate(5660deg);
+  }
+}

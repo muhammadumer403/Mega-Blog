@@ -91,35 +91,37 @@ export class PostService{
         }
     }
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
-                ID.unique(),
-                file
-            )
+                ID.unique(), // unique fileId
+                file // React me file hamesha e.target.files[0] hota hai
+            );
         } catch (error) {
-            console.log("Appwrite service :: uploadFile :: error",error)
-            return false
+            console.log("Appwrite service :: uploadFile :: error", error);
+            return false;
         }
     }
-    async deleteFile(fileId){
+
+    // Delete File
+    async deleteFile(fileId) {
         try {
-            await this.bucket.deleteFile(
+            return await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
-            )
+            );
         } catch (error) {
-            console.log("Appwrite service :: deleteFile :: error",error)
-            return false
+            console.log("Appwrite service :: deleteFile :: error", error);
+            return false;
         }
     }
-    getFilePreview(fileId){
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
-        )
-    }
+
+    // Get File Preview
+    getFilePreview(fileId) {
+    const filer = this.bucket.getFileView(conf.appwriteBucketId.toString(), fileId.toString());
+    return filer;
+}
 }
 
 

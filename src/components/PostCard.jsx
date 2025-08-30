@@ -9,7 +9,7 @@ function PostCard({ $id, title, featuredImage }) {
         <div className="w-full bg-gray-800 rounded-xl p-4 transition-transform transform hover:scale-105 hover:shadow-xl duration-300">
           <div className="w-full mb-4">
             <img
-              src={featuredImage ? postService.getFilePreview(featuredImage) : '/default-image.jpg'}
+             src={featuredImage ? postService.getFilePreview(featuredImage).toString() : '/default-image.jpg'}
               alt={title || 'Post Image'}
               className="rounded-xl w-full h-48 object-cover"
               loading="lazy"
