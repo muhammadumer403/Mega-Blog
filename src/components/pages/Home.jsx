@@ -41,15 +41,23 @@ function Home() {
   }
 
   return (
-    <div className="w-full py-8 bg-gray-900">
+    <div className="w-full py-8 bg-black">
       <Container>
-        <div className="flex flex-wrap justify-center">
-          {reduxPosts.map((post) => (
-            <div key={post.$id} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-              <PostCard {...post} />
-            </div>
-          ))}
-        </div>
+        <div className="flex flex-col gap-6 w-full">
+  {reduxPosts.map((post, index) => (
+    <div
+      key={post.$id}
+      className={`w-full flex ${
+        index % 2 === 0 ? "justify-start" : "justify-end"
+      }`}
+    >
+      <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+        <PostCard {...post} />
+      </div>
+    </div>
+  ))}
+</div>
+
       </Container>
     </div>
   );

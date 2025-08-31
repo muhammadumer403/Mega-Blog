@@ -49,7 +49,7 @@ export default function Post() {
   }
 
   return (
-    <div className="py-8 bg-gray-900">
+    <div className="py-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-black">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-gray-800 shadow-lg">
           <img

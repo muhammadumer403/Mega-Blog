@@ -4,7 +4,7 @@ import Logo from "../Logo";
 
 function Footer() {
   return (
-    <section className="relative overflow-hidden py-10 bg-gray-900 border-t-2 border-t-gray-700 dark:bg-gray-800">
+    <section className="relative overflow-hidden py-10 bg-zinc-950 border-t-2  dark:bg-zinc-900">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           {/* Logo Section */}

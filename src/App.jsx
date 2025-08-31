@@ -26,7 +26,7 @@ function App() {
   }, [dispatch]);
 
 return !loading ? (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
+    <div className="min-h-screen font-montserrat bg-black flex flex-col">
       <Header />
       <main className="flex-1 py-8">
         <Outlet />

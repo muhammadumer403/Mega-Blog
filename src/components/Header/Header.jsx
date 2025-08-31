@@ -9,35 +9,65 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    {
-      name: "Home",
-      slug: "/",
-      active: true,
-    },
-    {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
-    },
-    {
-      name: "Signup",
-      slug: "/signup",
-      active: !authStatus,
-    },
-    {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-    },
-    {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-    },
-  ];
-
+  
+  {
+    name: "Home",
+    slug: "/",
+    active: true,
+    color: "voilet-500",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h6m8-11v11a1 1 0 01-1 1h-6"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Login",
+    slug: "/login",
+    active: !authStatus,
+    color: "blue-500",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12H3m12 0l-4-4m4 4l-4 4"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Signup",
+    slug: "/signup",
+    active: !authStatus,
+    color: "amber-500",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 21v-2a4 4 0 00-3-3.87M12 7a4 4 0 100 8 4 4 0 000-8zm6 8a4 4 0 00-3-3.87M6 21v-2a4 4 0 013-3.87"/>
+      </svg>
+    ),
+  },
+  {
+    name: "All Posts",
+    slug: "/all-posts",
+    active: authStatus,
+    color: "pink-500",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Add Post",
+    slug: "/add-post",
+    active: authStatus,
+    color: "green-500",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/>
+      </svg>
+    ),
+  },
+];
   return (
-    <header className="bg-yellow-900 text-white shadow-md py-4 dark:bg-gray-800 dark:text-white">
+    <header className=" text-white shadow-md py-4 bg-zinc-900 ">
       <Container>
         <div className="flex justify-between items-center">
           <div className="mr-4">
@@ -52,12 +82,13 @@ const Header = () => {
               (item) =>
                 item.active && (
                   <li key={item.name}>
-                    <button
-                      className="inline-block px-6 py-2 rounded-full duration-200 hover:bg-blue-600 focus:outline-none"
-                      onClick={() => navigate(item.slug)}
-                    >
-                      {item.name}
-                    </button>
+                    <button className={`Btn hover:bg-${item.color} bg-${item.color}`}  onClick={() => navigate(item.slug)} >
+  
+  <div className="sign">{item.icon}</div>
+  
+  <div className="text text-xs">{item.name}</div>
+</button>
+                    
                   </li>
                 )
             )}
