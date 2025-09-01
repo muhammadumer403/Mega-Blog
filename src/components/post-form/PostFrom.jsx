@@ -87,7 +87,7 @@ function Postfrom({ post }) {
         <Input
           label="Title :"
           placeholder="Title"
-          className="mb-4"
+          className="mb-4  "
           {...register("title", { required: true })}
         />
         <Input
@@ -128,6 +128,7 @@ function Postfrom({ post }) {
         <Select
           options={["active", "inactive"]}
           label="Status"
+
           className="mb-4"
           {...register("status", { required: true })}
         />

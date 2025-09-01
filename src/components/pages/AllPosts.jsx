@@ -36,9 +36,7 @@ function AllPosts() {
             reduxPosts.map((post, index) => (
               <div
                 key={post.$id}
-                className={`flex ${
-                  index % 2 === 0 ? "justify-start " : "justify-end "
-                }`}
+                className={`flex `}
               >
                 <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
                   <PostCard idx={index} {...post}  />

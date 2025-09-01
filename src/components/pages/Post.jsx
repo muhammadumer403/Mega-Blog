@@ -49,9 +49,10 @@ export default function Post() {
   }
 
   return (
-    <div className="py-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-black">
-      <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-gray-800 shadow-lg">
+    <div className="py-8 bg-black  ">
+      <Container >
+        <div className="flex flex-col items-center">
+          <div className="w-1/2 object-contain flex justify-center items-center mb-4 relative border rounded-xl p-2 bg-gray-800 shadow-lg">
           <img
             src={
               post.featuredImage
@@ -82,6 +83,7 @@ export default function Post() {
         </div>
         <div className="browser-css text-white">
           {parse(post.content)}
+        </div>
         </div>
       </Container>
     </div>

@@ -48,11 +48,11 @@ function Home() {
     <div
       key={post.$id}
       className={`w-full flex ${
-        index % 2 === 0 ? "justify-start" : "justify-end"
+        index % 2 === 0 ? "" : ""
       }`}
     >
       <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
-        <PostCard {...post} />
+        <PostCard idx={index} {...post} />
       </div>
     </div>
   ))}
